@@ -41,13 +41,14 @@ int main() {
             }
             case '3': {
                 system("sudo apt update && sudo apt upgrade");
+                break;
             }
         }
     }
     else if (selectedOS == "fedora") {
         cout << "[1] - Install from DNF\n";
         cout << "[2] - Search package from DNF\n ";
-        cout << "[3] - Update the system)\n]";
+        cout << "[3] - Update the system)\n";
         cout << "> ";
         cin >> selectedParagraph;
 
