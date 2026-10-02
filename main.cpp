@@ -96,6 +96,7 @@ int main() {
             }
             case '3': {
                 system("sudo pacman -Syu");
+                exit(0);
             }
             case '4': {
                 int result = system("sudo pacman -S --needed --noconfirm git base-devel");
