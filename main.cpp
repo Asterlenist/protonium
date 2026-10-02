@@ -4,7 +4,7 @@
 #include <cstdlib>
 using namespace std;
 
-string ver = "b0.4(build-3)";
+string ver = "v0.4";
 string selectedOS;
 string selectedParagraph;
 string selectedNameOfPackage;
@@ -21,6 +21,7 @@ int main() {
         cout << "[1] - Install from APT\n";
         cout << "[2] - Search package from APT\n";
         cout << "[3] - Update the system\n";
+        cout << "[4] - Install from Flatpak\n";
         cout << "> ";
         cin >> selectedParagraph;
 
@@ -43,12 +44,20 @@ int main() {
                 system("sudo apt update && sudo apt upgrade");
                 break;
             }
+            case '4': {
+                cout << "Enter a name of package... ";
+                cin >> selectedNameOfPackage;
+                string command = "flatpak install -y flathub " + selectedNameOfPackage;
+                system(command.c_str());
+                break;
+            }
         }
     }
     else if (selectedOS == "fedora") {
         cout << "[1] - Install from DNF\n";
         cout << "[2] - Search package from DNF\n";
         cout << "[3] - Update the system\n";
+        cout << "[4] - Install from Flatpak\n";
         cout << "> ";
         cin >> selectedParagraph;
 
@@ -71,13 +80,21 @@ int main() {
                 system("sudo dnf update");
                 break;
             }
+            case '4': {
+                cout << "Enter a name of package... ";
+                cin >> selectedNameOfPackage;
+                string command = "flatpak install -y flathub " + selectedNameOfPackage;
+                system(command.c_str());
+                break;
+            }
         }
     }
     else if (selectedOS == "arch" || selectedOS == "manjaro" || selectedOS == "endeavouros") {
         cout << "[1] - Install from PACMAN\n";
         cout << "[2] - Search package from PACMAN\n";
         cout << "[3] - Update the system\n";
-        cout << "[4] - Install yay (recommended for arch)\n";
+        cout << "[4] - Install from Flatpak\n";
+        cout << "[5] - Install yay (recommended for arch)\n";
         cout << "> ";
         cin >> selectedParagraph;
 
@@ -101,6 +118,13 @@ int main() {
                 break;
             }
             case '4': {
+                cout << "Enter a name of package... ";
+                cin >> selectedNameOfPackage;
+                string command = "flatpak install -y flathub " + selectedNameOfPackage;
+                system(command.c_str());
+                break;
+            }
+            case '5': {
                 int result = system("sudo pacman -S --needed --noconfirm git base-devel");
                 if (result == 0) {
                     cout << "[OK] - Install dependencies\n";
@@ -130,6 +154,7 @@ int main() {
         cout << "[1] - Install from ZYPPER\n";
         cout << "[2] - Search package from ZYPPER\n";
         cout << "[3] - Update the system\n";
+        cout << "[4] - Install from Flatpak\n";
         cout << "> ";
         cin >> selectedParagraph;
 
@@ -157,6 +182,13 @@ int main() {
                 } else {
                     system("sudo zypper update");
                 }
+                break;
+            }
+            case '4': {
+                cout << "Enter a name of package... ";
+                cin >> selectedNameOfPackage;
+                string command = "flatpak install -y flathub " + selectedNameOfPackage;
+                system(command.c_str());
                 break;
             }
         }
