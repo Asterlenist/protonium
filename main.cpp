@@ -5,7 +5,7 @@
 #include "SystemDetector.h"
 using namespace std;
 
-string ver = "v0.5";
+string ver = "v0.51";
 SystemInfo sys = detectSystem();
 string selectedOS = sys.id;
 string selectedParagraph;
