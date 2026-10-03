@@ -2,29 +2,35 @@
 
 # Protonium
 
-Protonium is a C++ project designed for [brief project description]. It provides a clean, modular, and extensible foundation for building high-performance applications, tools, or libraries.
+A simple package installer for Linux and FreeBSD. Install, search, and update packages using your distribution's native package manager — all from one menu.
+
+## Supported OS
+
+- Debian / Ubuntu / Mint (APT)
+- Fedora (DNF)
+- Arch / Manjaro / EndeavourOS (PACMAN + AUR)
+- openSUSE (ZYPPER)
+- FreeBSD (PKG, doas/sudo)
 
 ## Features
 
-- Modern C++ codebase
-- Cross-platform build support
-- Modular project layout
-- Easy extension and maintenance
-- Suitable for desktop, console, or library-style applications
+- Install packages via native package manager (APT, DNF, PACMAN, ZYPPER, PKG)
+- Search packages
+- Update the system
+- Install via Flatpak (Debian, Fedora, Arch, openSUSE)
+- Install yay on Arch (AUR helper)
+- Support for both `doas` and `sudo` on FreeBSD
 
 ## Requirements
 
-Before building the project, ensure you have the following installed:
+- C++ compiler (`g++` or `clang++`)
+- Git (for installing yay on Arch)
+- Flatpak (optional, for Flatpak installation)
 
-- C++ compiler with C++17 support
-- CMake 3.16 or newer
-- Git
-- Optional: IDE such as CLion, Visual Studio, or VS Code
-
-## Getting Started
-
-### Clone the repository
+## Build
 
 ```bash
 git clone https://github.com/Asterlenist/protonium.git
 cd protonium
+g++ main.cpp -o protonium
+./protonium
