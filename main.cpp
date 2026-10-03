@@ -191,6 +191,13 @@ int main() {
     }
     else if (selectedOS == "opensuse-leap") {
 switch (selectedParagraph[0]) {
+        cout << "[1] - Install from ZYPPER\n";
+        cout << "[2] - Search package from ZYPPER\n";
+        cout << "[3] - Update the system\n";
+        cout << "[4] - Install from Flatpak\n";
+        cout << "> ";
+        cin >> selectedParagraph;
+
             case '1': {
                 cout << "Enter the name of package... ";
                 cin >> selectedNameOfPackage;
