@@ -1,23 +1,26 @@
-// Supported OS: debian, ubuntu, mint, fedora, arch, manjaro, endeavouros, opensuse, freebsd
+// Supported OS: debian, ubuntu, linuxmint, fedora, archlinux, manjaro, endeavouros, opensuse(-tumbleweed,-leap), freebsd
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include "SystemDetector.h"
 using namespace std;
 
-string ver = "v0.4";
-string selectedOS;
+string ver = "v0.5";
+SystemInfo sys = detectSystem();
+string selectedOS = sys.id;
 string selectedParagraph;
 string selectedNameOfPackage;
+string debugMode = "0";
 
 int main() {
-    cout << "Supported OS: debian, ubuntu, mint, opensuse,\n";
-    cout << " fedora, arch, manjaro, endeavouros, freebsd\n";
-    cout << "Select OS: ";
-    cin >> selectedOS;
+    SystemInfo sys = detectSystem();
+    if (debugMode == "1") {
+        cout << "Detected: " << sys.prettyName << "\n";
+    }
     cout << "PROTONIUM " << ver << endl;
     cout << "=-=-=-=-=-=-=-=-=-=" << endl;
 
-    if (selectedOS == "debian" || selectedOS == "ubuntu" || selectedOS == "mint") {
+    if (selectedOS == "debian" || selectedOS == "ubuntu" || selectedOS == "linuxmint") {
         cout << "[1] - Install from APT\n";
         cout << "[2] - Search package from APT\n";
         cout << "[3] - Update the system\n";
@@ -89,7 +92,7 @@ int main() {
             }
         }
     }
-    else if (selectedOS == "arch" || selectedOS == "manjaro" || selectedOS == "endeavouros") {
+    else if (selectedOS == "archlinux" || selectedOS == "manjaro" || selectedOS == "endeavouros") {
         cout << "[1] - Install from PACMAN\n";
         cout << "[2] - Search package from PACMAN\n";
         cout << "[3] - Update the system\n";
@@ -150,7 +153,7 @@ int main() {
             }
         }
     }
-    else if (selectedOS == "opensuse") {
+    else if (selectedOS == "opensuse-tumbleweed") {
         cout << "[1] - Install from ZYPPER\n";
         cout << "[2] - Search package from ZYPPER\n";
         cout << "[3] - Update the system\n";
@@ -174,14 +177,36 @@ int main() {
                 break;
             }
             case '3': {
-                string selectedOpenSUSE;
-                cout << "Enter your OS (tumbleweed, leap): ";
-                cin >> selectedOpenSUSE;
-                if (selectedOpenSUSE == "tumbleweed") {
-                    system("sudo zypper dup");
-                } else {
-                    system("sudo zypper update");
-                }
+                system("sudo zypper dup");
+                break;
+            }
+            case '4': {
+                cout << "Enter a name of package... ";
+                cin >> selectedNameOfPackage;
+                string command = "flatpak install -y flathub " + selectedNameOfPackage;
+                system(command.c_str());
+                break;
+            }
+        }
+    }
+    else if (selectedOS == "opensuse-leap") {
+switch (selectedParagraph[0]) {
+            case '1': {
+                cout << "Enter the name of package... ";
+                cin >> selectedNameOfPackage;
+                string command = "sudo zypper -n install " + selectedNameOfPackage;
+                system(command.c_str());
+                break;
+            }
+            case '2': {
+                cout << "Enter the name of the package: ";
+                cin >> selectedNameOfPackage;
+                string command = "zypper search " + selectedNameOfPackage;
+                system(command.c_str());
+                break;
+            }
+            case '3': {
+                system("sudo zypper update");
                 break;
             }
             case '4': {
