@@ -10,7 +10,7 @@ A simple package installer for Linux and FreeBSD. Install, search, and update pa
 - Fedora (DNF)
 - Arch / Manjaro / EndeavourOS (PACMAN + AUR)
 - openSUSE (ZYPPER)
-- FreeBSD (PKG, doas/sudo)
+- FreeBSD (PKG, doas/root)
 
 ## Features
 
@@ -19,7 +19,7 @@ A simple package installer for Linux and FreeBSD. Install, search, and update pa
 - Update the system
 - Install via Flatpak (Debian, Fedora, Arch, openSUSE)
 - Install yay on Arch (AUR helper)
-- Support for both `doas` and `sudo` on FreeBSD
+- Support `doas` on FreeBSD
 
 ## Requirements
 
